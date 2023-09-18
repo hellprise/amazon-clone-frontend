@@ -1,7 +1,7 @@
 {
 	"trailingComma": "none",
 	"tabWidth": 2,
-	"printWidth": 100,
+	"printWidth": 120,
 	"useTabs": true,
 	"semi": false,
 	"singleQuote": true,
@@ -25,8 +25,5 @@
 		"^./(. *)"
 	],
 	"importOrderSeparation": true,
-	"plugins": [
-		"@trivago/prettier-plugin-sort-imports",
-		"prettier-plugin-tailwindcss"
-	]
+	"plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"]
 }

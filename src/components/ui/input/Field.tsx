@@ -28,13 +28,10 @@ export const Field = forwardRef<HTMLInputElement, IField>(
 				</label>
 
 				<span
-					className={clsx(
-						'mt-2 block text-left text-sm font-semibold text-red-400 transition-opacity duration-200',
-						{
-							'opacity-100': !!error,
-							'opacity-0': !error
-						}
-					)}
+					className={clsx('mt-2 block text-left text-sm font-semibold text-red-400 transition-opacity duration-200', {
+						'opacity-100': !!error,
+						'opacity-0': !error
+					})}
 				>
 					{error}
 				</span>

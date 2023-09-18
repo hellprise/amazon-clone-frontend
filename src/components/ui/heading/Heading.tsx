@@ -6,11 +6,7 @@ import { TypesWithClassName } from '@/components/types'
 
 type IHeadingAllProps = IHeadingProps & TypesWithClassName
 
-export const Heading: FC<PropsWithChildren<IHeadingAllProps>> = ({
-	className,
-	children,
-	tag = 'h1'
-}) => {
+export const Heading: FC<PropsWithChildren<IHeadingAllProps>> = ({ className, children, tag = 'h1' }) => {
 	const Tag = tag
 
 	return (

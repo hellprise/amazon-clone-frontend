@@ -12,10 +12,7 @@ const DynamicCheckRole = dynamic(() => import('./CheckRole'), {
 	ssr: false
 })
 
-const AuthProvider: FC<PropsWithChildren<TypeComponentAuthFields>> = ({
-	Component: { isOnlyUser },
-	children
-}) => {
+const AuthProvider: FC<PropsWithChildren<TypeComponentAuthFields>> = ({ Component: { isOnlyUser }, children }) => {
 	const { pathname } = useRouter()
 
 	const { user } = useAuth()
@@ -33,11 +30,7 @@ const AuthProvider: FC<PropsWithChildren<TypeComponentAuthFields>> = ({
 		if (!refreshToken && user) logout()
 	}, [pathname])
 
-	return isOnlyUser ? (
-		<DynamicCheckRole Component={{ isOnlyUser }} children={children} />
-	) : (
-		<>{children}</>
-	)
+	return isOnlyUser ? <DynamicCheckRole Component={{ isOnlyUser }} children={children} /> : <>{children}</>
 }
 
 export default AuthProvider

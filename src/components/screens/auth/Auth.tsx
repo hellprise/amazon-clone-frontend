@@ -99,16 +99,10 @@ export const Auth = () => {
 													error={errors.password?.message}
 												/>
 
-												{type === 'login' && (
-													<p className='mt-2 font-medium text-aqua'>Forgot password?</p>
-												)}
+												{type === 'login' && <p className='mt-2 font-medium text-aqua'>Forgot password?</p>}
 											</div>
 
-											<Button
-												className='mt-5 w-fit self-center capitalize'
-												variant='orange'
-												size='xl'
-											>
+											<Button className='mt-5 w-fit self-center capitalize' variant='orange' size='xl'>
 												{type}
 											</Button>
 										</>
@@ -128,18 +122,13 @@ export const Auth = () => {
 
 							<div className='w-5/12'>
 								<span className='text-sm'>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.{' '}
-									<b>Quod, accusantium possimus.</b>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. <b>Quod, accusantium possimus.</b>
 								</span>
 
 								<div className='mt-8 flex flex-col items-center gap-y-3'>
 									<span>{type === 'login' ? 'New to Amazon?' : 'Already have an account?'}</span>
 
-									<Button
-										variant='orange'
-										size='full'
-										onClick={() => setType(type === 'login' ? 'register' : 'login')}
-									>
+									<Button variant='orange' size='full' onClick={() => setType(type === 'login' ? 'register' : 'login')}>
 										{type === 'login' ? 'Create your Amazon account' : 'Sign in to your account'}
 									</Button>
 								</div>

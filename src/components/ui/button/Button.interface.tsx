@@ -4,8 +4,7 @@ type ButtonVariant = 'light' | 'orange' | 'google'
 
 type ButtonSize = 's' | 'm' | 'l' | 'xl' | 'full'
 
-export interface IButtonProps
-	extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+export interface IButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	variant?: ButtonVariant
 	size?: ButtonSize
 }
