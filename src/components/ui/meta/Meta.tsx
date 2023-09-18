@@ -18,7 +18,7 @@ export const Meta: FC<PropsWithChildren<ISeo>> = ({ title, description, image, c
 				{description ? (
 					<>
 						<meta itemProp='description' name='description' content={description} />
-						<meta itemProp='image' name='image' content={image || '/favicon.svg'} />
+						<meta itemProp='image' name='image' content={image || '/favicon.ico'} />
 						<link rel='canonical' href={currentUrl} />
 						<meta name='og:locale' content='en' />
 						<meta name='og:title' content={TitleMerge({ title })} />
