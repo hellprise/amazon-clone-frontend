@@ -13,7 +13,10 @@ export const cartSlice = createSlice({
 		addToCart: (state, action: PayloadAction<IAddToCartPayload>) => {
 			const isExists = state.items.some(item => item.product.id === action.payload.product.id)
 
-			if (isExists) {
+			console.log('isExists slice', isExists);
+			
+
+			if (!isExists) {
 				state.items.push({
 					...action.payload,
 					id: state.items.length

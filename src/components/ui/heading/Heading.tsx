@@ -1,8 +1,9 @@
 import clsx from 'clsx'
 import { FC, PropsWithChildren } from 'react'
 
-import { IHeadingProps } from './Heading.interface'
 import { TypesWithClassName } from '@/components/types'
+
+import { IHeadingProps } from './Heading.interface'
 
 type IHeadingAllProps = IHeadingProps & TypesWithClassName
 

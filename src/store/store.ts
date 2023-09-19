@@ -7,9 +7,9 @@ import { cartSlice } from './cart/cart.slice'
 import { userSlice } from './user/user.slice'
 
 const persistConfig = {
-	key: 'amazon-shop',
+	key: 'amazon-shop', // як буде називатися поле у local storage
 	storage,
-	whitelist: ['cart']
+	whitelist: ['cart'] // які поля зберігати у local storage
 }
 
 const rootReducer = combineReducers({
@@ -31,3 +31,5 @@ export const store = configureStore({
 })
 
 export const persistor = persistStore(store)
+
+export type TypeRootState = ReturnType<typeof rootReducer>

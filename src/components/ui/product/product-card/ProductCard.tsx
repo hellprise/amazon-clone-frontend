@@ -18,29 +18,31 @@ const DynamicFavoriteButton = dynamic(() => import('../favorite-button/FavoriteB
 
 export const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
 	return (
-		<section>
-			<div className='mb-5 rounded-xl bg-white p-5 pb-10'>
-				<div className='mb-8 flex items-center justify-between'>
+		<section className='animate-scaleIn'>
+			<div className='mb-5 rounded-3xl bg-white p-4 pb-12'>
+				<section className='mb-3 flex items-center justify-end gap-3'>
 					<AddToCartButton product={product} />
-					<DynamicFavoriteButton id={product.id} />
-				</div>
+					<DynamicFavoriteButton productId={product.id} />
+				</section>
 
-				<Link href={`/product/${product.slug}`}>
-					<Image src={product.images[0]} alt={product.name} width={200} height={200} />
+				<Link className='relative h-[280px] w-full block' href={`/product/${product.slug}`}>
+				{/* <section className='relative h-[260px] w-full'> */}
+					<Image className='object-contain' src={product.images[0]} alt={product.name} fill />
+				{/* </section> */}
 				</Link>
 			</div>
 
 			<Link href={`/product/${product.slug}`}>
-				<Heading tag='h4'>{product.name}</Heading>
+				<Heading className='!text-left !text-secondary/70' tag='h4'>{product.name}</Heading>
 			</Link>
 
-			<Link className='text-aqua' href={`/category/${product.category.slug}`}>
-				{product.category.name}
+			<Link className='text-aqua font-medium text-sm' href={`/category/${product?.category?.slug}`}>
+				{product?.category?.name}
 			</Link>
 
 			<ProductRating product={product} />
 
-			<p className='text-gray-500'>{convertPrice(product.price)}</p>
+			<p className='text-secondary/80 text-2xl font-semibold mt-2'>{convertPrice(product.price)}</p>
 		</section>
 	)
 }

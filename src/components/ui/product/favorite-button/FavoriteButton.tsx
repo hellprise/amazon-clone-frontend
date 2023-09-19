@@ -1,29 +1,38 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import clsx from 'clsx'
 import { FC } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 
-import { useProfile } from '@/hooks/useProfile'
 import { UserService } from '@/services/user.service'
 
-const FavoriteButton: FC<{ id: number }> = ({ id }) => {
+import { useProfile } from '@/hooks/useProfile'
+
+const FavoriteButton: FC<{ productId: number }> = ({ productId }) => {
 	const { profile } = useProfile()
 
-	const { invalidateQueries } = useQueryClient()
+	const queryClient = useQueryClient()
 
-	const { mutate } = useMutation(['toggle favorite'], () => UserService.toggleFavorite(id), {
+	const { mutate } = useMutation(['toggle favorite'], () => UserService.toggleFavorite(productId), {
 		onSuccess() {
-			invalidateQueries(['get profile'])
+			// оновлюємо дані профілю після успішного додавання/видалення улюбленого товару
+			queryClient.invalidateQueries(['get profile'])
 		}
 	})
 
 	if (!profile) return null
 
-	const isExists = profile.favorites.some(favorite => favorite.id === id)
+	const isExists = profile.favorites.some(favorite => favorite.id === productId)
 
 	return (
-		<div>
-			<button onClick={() => mutate()}>{isExists ? <AiFillHeart /> : <AiOutlineHeart />}</button>
-		</div>
+		<button
+			className={clsx('text-[26px] transition-colors duration-300', {
+				'text-primary': isExists,
+				'text-secondary': !isExists
+			})}
+			onClick={() => mutate()}
+		>
+			{isExists ? <AiFillHeart /> : <AiOutlineHeart />}
+		</button>
 	)
 }
 

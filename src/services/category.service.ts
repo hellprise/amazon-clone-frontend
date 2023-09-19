@@ -7,7 +7,7 @@ const CATEGORIES = 'categories'
 export const CategoryService = {
 	async getAll() {
 		return axiosClassic<ICategory[]>({
-			url: `${CATEGORIES}`,
+			url: CATEGORIES,
 			method: 'GET'
 		})
 	},

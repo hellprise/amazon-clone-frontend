@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { getStoreLocal } from '@/utils/local-storage'
 
-import { checkAuth, login, logout, register } from './user.actions'
+// import { checkAuth, login, logout, register } from './user.actions'
+import { auth, checkAuth, logout } from './user.actions'
 import { IInitialState } from './user.interface'
 
 const initialState: IInitialState = {
@@ -16,25 +17,36 @@ export const userSlice = createSlice({
 	reducers: {},
 	extraReducers: builder => {
 		builder
-			.addCase(register.pending, state => {
+			// .addCase(register.pending, state => {
+			// 	state.isLoading = true
+			// })
+			// .addCase(register.fulfilled, (state, { payload }) => {
+			// 	state.isLoading = false
+			// 	state.user = payload.user
+			// })
+			// .addCase(register.rejected, state => {
+			// 	state.isLoading = false
+			// 	state.user = null
+			// })
+			// .addCase(login.pending, state => {
+			// 	state.isLoading = true
+			// })
+			// .addCase(login.fulfilled, (state, { payload }) => {
+			// 	state.isLoading = false
+			// 	state.user = payload.user
+			// })
+			// .addCase(login.rejected, state => {
+			// 	state.isLoading = false
+			// 	state.user = null
+			// })
+			.addCase(auth.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(register.fulfilled, (state, { payload }) => {
+			.addCase(auth.fulfilled, (state, { payload }) => {
 				state.isLoading = false
 				state.user = payload.user
 			})
-			.addCase(register.rejected, state => {
-				state.isLoading = false
-				state.user = null
-			})
-			.addCase(login.pending, state => {
-				state.isLoading = true
-			})
-			.addCase(login.fulfilled, (state, { payload }) => {
-				state.isLoading = false
-				state.user = payload.user
-			})
-			.addCase(login.rejected, state => {
+			.addCase(auth.rejected, state => {
 				state.isLoading = false
 				state.user = null
 			})

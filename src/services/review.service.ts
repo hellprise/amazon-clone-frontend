@@ -12,13 +12,13 @@ type typeData = {
 export const ReviewService = {
 	async getAll() {
 		return axiosClassic<IReview[]>({
-			url: `${REVIEWS}`,
+			url: REVIEWS,
 			method: 'GET'
 		})
 	},
 
 	async getAverageByProduct(productId: string | number) {
-		return axiosClassic<number>({
+		return axiosClassic<{rating: number}>({
 			url: `${REVIEWS}/average-by-product/${productId}`,
 			method: 'GET'
 		})

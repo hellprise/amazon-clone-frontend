@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
 import { FC, PropsWithChildren } from 'react'
 
-import { TypeComponentAuthFields } from './auth-page.types'
 import { useAuth } from '@/hooks/useAuth'
+
+import { TypeComponentAuthFields } from './auth-page.types'
 
 const CheckRole: FC<PropsWithChildren<TypeComponentAuthFields>> = ({ Component: { isOnlyUser }, children }) => {
 	const router = useRouter()
@@ -12,6 +13,7 @@ const CheckRole: FC<PropsWithChildren<TypeComponentAuthFields>> = ({ Component: 
 	if (user && isOnlyUser) return <>{children}</>
 
 	router.pathname !== '/auth' && router.replace('/auth')
+
 	return null
 }
 

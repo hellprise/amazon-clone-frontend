@@ -1,5 +1,7 @@
 import { IPagination } from '@/types/pagination.interface'
 
+// зробити такий файл для кожного сервісу та винести все, що потрібно
+
 export const PRODUCTS = 'products'
 
 export type typeProductData = {

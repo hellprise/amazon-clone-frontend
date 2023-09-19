@@ -7,7 +7,7 @@ const ORDERS = 'orders'
 export const OrderService = {
 	async getAll() {
 		return instance<IOrder[]>({
-			url: `${ORDERS}`,
+			url: ORDERS,
 			method: 'GET'
 		})
 	}

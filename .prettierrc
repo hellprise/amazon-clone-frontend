@@ -9,7 +9,7 @@
 	"arrowParens": "avoid",
 	"importOrder": [
 		"<THIRD_PARTY_MODULES>",
-		"^@/components/(. *)$",
+		"^@/components/(.*)$",
 		"^@/layout/(.*)$",
 		"^@/ui/(.*)$",
 		"^@/providers/(.*)$",
@@ -17,12 +17,13 @@
 		"^@/assets/(.*)$",
 		"^@/config/(.*)$",
 		"^@/store/(.*)$",
-		"^@/hooks/ (.*)$",
+		"^@/services/(.*)$",
+		"^@/hooks/(.*)$",
 		"^@/types/(.*)$",
 		"^@/utils/(.*)$",
 		"^@/api/(.*)$",
 		"^../(.*)$",
-		"^./(. *)"
+		"^./(.*)"
 	],
 	"importOrderSeparation": true,
 	"plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"]

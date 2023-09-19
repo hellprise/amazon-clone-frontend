@@ -9,8 +9,6 @@ export const useAuthRedirect = () => {
 	const { user } = useAuth()
 
 	useEffect(() => {
-		if (user) {
-			replace('/')
-		}
+		if (user) replace('/')
 	}, [user])
 }

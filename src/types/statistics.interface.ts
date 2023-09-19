@@ -1,4 +1,4 @@
-export type IStatisticsResponse = {
+export interface IStatistic {
 	name: string
 	value: number
 }

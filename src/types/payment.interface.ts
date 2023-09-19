@@ -26,6 +26,6 @@ export interface IPaymentResponse {
 	amount: Amount
 	recipient: Recipient
 	payment_method: PaymentMethod
+	created_at: Date
 	confirmation: Confirmation
-	created_at: string
 }

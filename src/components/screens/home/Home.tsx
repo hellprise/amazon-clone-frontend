@@ -1,26 +1,29 @@
 import { useEffect, useState } from 'react'
 
+import { Layout } from '@/ui/layout/Layout'
 import { Meta } from '@/ui/meta/Meta'
-import { ProductList } from '@/ui/product/product-list/ProductList'
+import { CatalogPagination } from '@/ui/product/catalog/CatalogPagination'
 
 import { TypePaginationProducts } from '@/types/product.interface'
 
-export const Home = ({ products, length }: TypePaginationProducts) => {
-	const [isLoading, setIsLoading] = useState<boolean>(false)
+export const Home = ({ products, count }: TypePaginationProducts) => {
+	// const [isLoading, setIsLoading] = useState<boolean>(false)
 
-	useEffect(() => {
-		if (products.length === 0) {
-			setIsLoading(true)
-		} else {
-			setIsLoading(false)
-		}
-	}, [products])
+	// useEffect(() => {
+	// 	if (products.length === 0) {
+	// 		setIsLoading(true)
+	// 	} else {
+	// 		setIsLoading(false)
+	// 	}
+	// }, [products])
 
 	return (
 		<Meta title='Home'>
-			{/* Carousel */}
+			<Layout>
+				{/* Carousel */}
 
-			<ProductList products={products || []} isLoading={isLoading} title='Hot deals 🔥' />
+				<CatalogPagination data={{ products, count }} title='Hot deals 🔥' />
+			</Layout>
 		</Meta>
 	)
 }

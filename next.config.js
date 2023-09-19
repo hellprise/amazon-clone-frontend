@@ -6,7 +6,7 @@ const nextConfig = {
 		APP_URL: process.env.APP_URL
 	},
 	images: {
-		domains: ['loremflickr.com', 'www.aptronixindia.com']
+		domains: ['loremflickr.com', 'www.aptronixindia.com', 'picsum.photos', 'assets.stickpng.com', 'w7.pngwing', 'imgpng']
 	}
 }
 

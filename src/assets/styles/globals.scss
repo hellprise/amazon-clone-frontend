@@ -16,3 +16,13 @@ body {
 	text-decoration: none;
 	opacity: 0.2 !important;
 }
+
+.menu__open {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.menu__close {
+	opacity: 0;
+	transform: scale(0.8);
+}

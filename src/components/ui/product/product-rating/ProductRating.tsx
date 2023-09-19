@@ -8,22 +8,30 @@ export const ProductRating: FC<{ product: IProduct }> = ({ product }) => {
 		Math.round(product.reviews.reduce((acc, review) => acc + review.rating, 0) / product.reviews.length) || 0
 	)
 
+	// const { data: rating } = useQuery(
+	// 	['get product rating', product.id],
+	// 	() => ReviewService.getAverageByProduct(product.id),
+	// 	{
+	// 		select: ({ data }) => data.rating
+	// 	}
+	// )
+
 	return (
-		<section>
-			<span>Review:</span>
+		<section className='mt-2 flex items-center gap-1'>
+			{!!product.reviews.length && (
+				<Rating
+					readonly
+					initialValue={rating}
+					SVGstyle={{ display: 'inline-block' }}
+					size={26}
+					allowFraction
+					transition
+				/>
+			)}
 
-			<Rating
-				readonly
-				initialValue={rating || 0}
-				SVGstyle={{ display: 'inline-block' }}
-				size={20}
-				allowFraction
-				transition
-			/>
+			<p className='mr-1 font-medium leading-none text-primary'>{rating}</p>
 
-			<p className='text-primary'>{rating}</p>
-
-			<span>({product.reviews.length} reviews)</span>
+			<span className='leading-none'>({product.reviews.length} reviews)</span>
 		</section>
 	)
 }

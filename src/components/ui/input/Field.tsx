@@ -1,22 +1,24 @@
 import clsx from 'clsx'
 import { forwardRef } from 'react'
 
+import { Icon } from '@/ui/icon/Icon'
+
 import { IField } from './Field.interface'
 
 export const Field = forwardRef<HTMLInputElement, IField>(
-	({ label, error, style, className, Icon, type = 'text', ...props }, ref) => {
+	({ label, error, style, className, LabelIcon, changeTypeIcon, onIconClick, type = 'text', ...props }, ref) => {
 		return (
 			<section className={clsx()} style={style}>
-				<label htmlFor='field'>
+				<label className='relative' htmlFor='field'>
 					<p className='mb-1 flex items-center gap-x-2'>
-						{Icon && <Icon className='h-5 w-5' />}
+						{LabelIcon && <LabelIcon className='text-xl text-secondary' />}
 
 						<span className='font-medium'>{label}</span>
 					</p>
 
 					<input
 						className={clsx(
-							'w-full rounded-md border border-secondary px-5 py-3 transition-colors duration-300',
+							'peer w-full cursor-pointer rounded-md border-2 border-secondary py-3 pl-5 pr-10 transition-colors duration-300',
 							'hover:border-bg hover:opacity-80 focus:border-primary focus:outline-none',
 							className,
 							{}
@@ -25,6 +27,14 @@ export const Field = forwardRef<HTMLInputElement, IField>(
 						type={type}
 						{...props}
 					/>
+
+					{changeTypeIcon && (
+						<Icon
+							onClick={onIconClick}
+							icon={changeTypeIcon}
+							className='absolute right-3 top-[43px] text-2xl text-secondary peer-hover:text-bg peer-focus:text-primary'
+						/>
+					)}
 				</label>
 
 				<span

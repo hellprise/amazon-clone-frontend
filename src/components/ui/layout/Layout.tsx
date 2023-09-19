@@ -12,10 +12,11 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
 	return (
 		<>
 			<Header />
-			<main className='grid grid-cols-[18%_82%]'>
+			<section className='grid grid-cols-[1fr_4fr]'>
 				<DynamicSidebar />
-				{children}
-			</main>
+
+				<main className='px-3 lg:px-5'>{children}</main>
+			</section>
 			<Footer />
 		</>
 	)

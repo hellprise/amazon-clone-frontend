@@ -26,9 +26,7 @@ export default function App({ Component, pageProps }: AppProps & TypeComponentAu
 			<Provider store={store}>
 				<PersistGate loading={null} persistor={persistor}>
 					<AuthProvider Component={{ isOnlyUser: Component.isOnlyUser }}>
-						<Layout>
 							<Component {...pageProps} />
-						</Layout>
 					</AuthProvider>
 				</PersistGate>
 			</Provider>

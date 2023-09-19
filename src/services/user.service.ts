@@ -14,14 +14,6 @@ type typeData = {
 
 export const UserService = {
 	async getProfile() {
-		// return fetch('http://localhost:4200/api/users/profile', {
-		// 	method: 'GET',
-		// 	headers: {
-		// 		'Content-Type': 'application/json',
-		// 		Authorization: `Bearer ${localStorage.getItem('accessToken')}`
-		// 	}
-		// }).then(res => res.json())
-
 		return instance<IFullUser>({
 			url: `${USERS}/profile`,
 			method: 'GET'

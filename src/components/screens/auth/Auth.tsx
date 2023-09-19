@@ -3,30 +3,30 @@ import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { GrClose } from 'react-icons/gr'
 
-// import { AiFillEye } from 'react-icons/ai'
 import { Button } from '@/ui/button/Button'
 import { Heading } from '@/ui/heading/Heading'
 import { Field } from '@/ui/input/Field'
 import { Loader } from '@/ui/loader/Loader'
 import { Meta } from '@/ui/meta/Meta'
-import { Wrapper } from '@/ui/wrapper/Wrapper'
 
 import { IEmailPassword } from '@/store/user/user.interface'
-
-import { validEmail } from '@/utils/valid-email'
 
 import { useActions } from '@/hooks/useActions'
 import { useAuth } from '@/hooks/useAuth'
 import { useAuthRedirect } from '@/hooks/useAuthRedirect'
 
+import { validEmail } from '@/utils/valid-email'
+
 export const Auth = () => {
 	useAuthRedirect()
 
 	const [type, setType] = useState<'login' | 'register'>('login')
+	const [passwordInputType, setPasswordInputType] = useState<'text' | 'password'>('password')
 
 	const { isLoading } = useAuth()
 
-	const { login, register } = useActions()
+	// const { login, register } = useActions()
+	const { auth } = useActions()
 
 	const {
 		register: formRegister,
@@ -37,25 +37,25 @@ export const Auth = () => {
 		mode: 'onChange'
 	})
 
+	const handlePasswordInputType = () => setPasswordInputType(prev => (prev === 'text' ? 'password' : 'text'))
+
 	const onSubmit: SubmitHandler<IEmailPassword> = data => {
-		if (type === 'login') login(data)
-		else register(data)
+		// if (type === 'login') login(data)
+		// else register(data)
+
+		auth({ type, data })
 
 		reset()
 	}
 
 	return (
 		<Meta title='Auth'>
-			<Wrapper className='relative'>
-				<h1>Test Auth page</h1>
-			</Wrapper>
-
 			<section className='fixed inset-0 z-20 flex h-full w-full items-center justify-center bg-white/40 backdrop-blur-sm'>
 				<div className='flex w-full max-w-4xl flex-col rounded-2xl bg-white p-4 pb-10 shadow-sm'>
 					<GrClose className='cursor-pointer self-end text-xl' />
 
 					<section>
-						<Heading tag='h1'>amazon</Heading>
+						<Heading className='capitalize' tag='h1'>amazon</Heading>
 
 						<div className='mt-14 flex flex-col items-center justify-between md:flex-row md:px-10'>
 							<section className='w-5/12'>
@@ -82,6 +82,7 @@ export const Auth = () => {
 													}
 												})}
 												label='Email'
+												// LabelIcon={<AiOutlineMail />}
 												error={errors.email?.message}
 											/>
 
@@ -95,7 +96,10 @@ export const Auth = () => {
 														}
 													})}
 													label='Password'
-													// Icon={<AiFillEye />}
+													type={passwordInputType}
+													onIconClick={handlePasswordInputType}
+													changeTypeIcon={passwordInputType === 'text' ? 'eye-slash' : 'eye'}
+													// LabelIcon={<FiLock />}
 													error={errors.password?.message}
 												/>
 

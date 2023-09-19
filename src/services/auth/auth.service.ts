@@ -8,6 +8,7 @@ import { saveToStorage } from './auth.helper'
 
 export const AuthService = {
 	async main(type: 'login' | 'register', data: IEmailPassword) {
+		// TODO: винести 'login' | 'register' теж у єнам. також, можна винести у файл config-url /auth та інші урли у інших сервісах, для запитів. зробити стрілкову функцію, яка буде віддавати потрібну строку з урлом
 		const response = await axiosClassic<IAuthResponse>({
 			url: `/auth/${type}`,
 			method: 'POST',
@@ -22,14 +23,12 @@ export const AuthService = {
 	async getNewTokens() {
 		const refreshToken = Cookies.get('refreshToken')
 
-		const response = await axiosClassic.post<
-			string,
+		const response = await axiosClassic.post<string, { data: IAuthResponse }>(
+			'/auth/login/access-token',
 			{
-				data: IAuthResponse
-			}
-		>('/auth/login/access-token', {
-			refreshToken
-		})
+				refreshToken
+			},
+		)
 
 		if (response.data.accessToken) saveToStorage(response.data)
 

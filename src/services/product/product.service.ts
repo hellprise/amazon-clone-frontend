@@ -6,11 +6,13 @@ import { PRODUCTS, TypeProductDataFilters, typeProductData } from './product.typ
 
 export const ProductService = {
 	async getAll(queryData = {} as TypeProductDataFilters) {
-		return axiosClassic<TypePaginationProducts>({
-			url: `${PRODUCTS}`,
+		const { data } = await axiosClassic<TypePaginationProducts>({
+			url: PRODUCTS,
 			method: 'GET',
 			params: queryData
 		})
+
+		return data
 	},
 
 	async getSimilar(id: string | number) {

@@ -7,7 +7,17 @@ export const getAccessToken = () => {
 	return accessToken || null
 }
 
+export const getRefreshToken = () => {
+	const refreshToken = Cookies.get('refreshToken')
+	return refreshToken || null
+}
+
+export const getUserFromStorage = () => {
+	return JSON.parse(localStorage.getItem('user') || '{}')
+}
+
 export const saveTokensStorage = (data: ITokens) => {
+	// винести в окремий файл у тайпи або єнами accessToken та refreshToken, щоб не помилятися, коли треба використовувати
 	Cookies.set('accessToken', data.accessToken)
 	Cookies.set('refreshToken', data.refreshToken)
 }
