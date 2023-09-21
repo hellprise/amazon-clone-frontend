@@ -17,8 +17,8 @@ export const SortDropdown: FC<ISortDropdownProps> = ({ sortType, setSortType }) 
 			className='mb-3 cursor-pointer appearance-none self-end rounded-md border-2 border-transparent bg-secondary/5 p-2 text-secondary outline-none transition-all duration-300 focus:border-secondary'
 			id='sort-dropdown'
 		>
-			{(Object.keys(EnumProductSort) as Array<keyof typeof EnumProductSort>).map(key => (
-				<option key={key} value={EnumProductSort[key]}>
+			{(Object.keys(EnumProductSort) as Array<keyof typeof EnumProductSort>).map((key, index) => (
+				<option key={`${key}_${index}`} value={EnumProductSort[key]}>
 					{EnumProductSort[key]}
 				</option>
 			))}

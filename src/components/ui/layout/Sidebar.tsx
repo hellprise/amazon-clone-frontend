@@ -25,7 +25,7 @@ const Sidebar = () => {
 	const { logout } = useActions()
 
 	return (
-		<aside className='flex h-[calc(100vh-86px)] flex-col justify-between bg-secondary p-5 pl-0'>
+		<aside className='flex h-full min-h-[calc(100vh-86px)] flex-col justify-between bg-secondary p-5 pl-0'>
 			<section className='flex flex-col'>
 				{isLoading ? (
 					<Loader />
@@ -58,7 +58,7 @@ const Sidebar = () => {
 					<div>Categories not found</div>
 				)}
 
-				<div className='mt-16 flex flex-col gap-5 pl-9 text-lg font-medium text-white'>
+				<div className='my-16 flex flex-col gap-5 pl-9 text-lg font-medium text-white'>
 					<Link className='group flex w-fit items-center gap-3' href={'/'}>
 						<BsPercent className='text-2xl transition-colors duration-300 group-hover:text-primary' />
 

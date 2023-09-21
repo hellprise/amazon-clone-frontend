@@ -38,7 +38,13 @@ export const CatalogPagination: FC<ICatalogPaginationProps> = ({ data, title }) 
 		}
 	)
 
-	const handlePage = () => setPage(prevPage => prevPage + 1)
+	const handlePage = (pageNumber: number) => {
+		// setPage(prevPage => prevPage + 1)
+
+		if (pageNumber === page) return
+
+		setPage(pageNumber)
+	}
 
 	if (isLoading) return <Loader />
 
@@ -63,7 +69,12 @@ export const CatalogPagination: FC<ICatalogPaginationProps> = ({ data, title }) 
 							const pageNumber = index + 1
 
 							return (
-								<Button size='s' key={index} variant={pageNumber === page ? 'orange' : 'light'} onClick={handlePage}>
+								<Button
+									size='s'
+									key={index}
+									variant={pageNumber === page ? 'orange' : 'light'}
+									onClick={() => handlePage(pageNumber)}
+								>
 									{pageNumber}
 								</Button>
 							)

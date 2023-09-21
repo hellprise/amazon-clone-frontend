@@ -8,10 +8,26 @@ export enum EnumOrderStatus {
 	DELIVERED = 'DELIVERED'
 }
 
+export type TypeOrderData = {
+	status?: EnumOrderStatus
+	items: {
+		productId: number
+		quantity: number
+		price: number
+	}[]
+}
+
 export interface IOrder {
 	id: number
 	createdAt: string
 	items: ICartItem[]
 	status: EnumOrderStatus
 	user: IUser
+	total: number
+}
+
+export interface IConfirmation {
+	confirmation: {
+		confirmation_url: string
+	}
 }

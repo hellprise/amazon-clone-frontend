@@ -1,4 +1,4 @@
-import { IOrder } from '@/types/order.interface'
+import { IConfirmation, IOrder, TypeOrderData } from '@/types/order.interface'
 
 import { instance } from '@/api/api.interceptor'
 
@@ -9,6 +9,14 @@ export const OrderService = {
 		return instance<IOrder[]>({
 			url: ORDERS,
 			method: 'GET'
+		})
+	},
+
+	async place(data: TypeOrderData) {
+		return instance<IConfirmation>({
+			url: ORDERS,
+			method: 'POST',
+			data
 		})
 	}
 }

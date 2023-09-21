@@ -1,4 +1,4 @@
-// import { useMutation } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
@@ -6,6 +6,9 @@ import { AiOutlineShoppingCart } from 'react-icons/ai'
 
 import { Button } from '@/ui/button/Button'
 
+import { OrderService } from '@/services/order.service'
+
+import { useActions } from '@/hooks/useActions'
 // import { PaymentService } from '@/services/payment.service'
 import { useCart } from '@/hooks/useCart'
 import { useOutside } from '@/hooks/useOutside'
@@ -20,13 +23,26 @@ export const Cart: FC = () => {
 
 	const { items, total } = useCart()
 
+	const { reset } = useActions()
+
 	const { push } = useRouter()
 
 	const handleIsShow = () => setIsShow(!isShow)
 
-	// const mutate = useMutation(['create payment'], () => PaymentService.createPayment(total), {
-	// 	onSuccess: ({ data }) => push(data.confirmation.confirmation_url)
-	// })
+	const { mutate } = useMutation(
+		['create order and payment'],
+		() =>
+			OrderService.place({
+				items: items.map(item => ({
+					price: item.price,
+					productId: item.product.id,
+					quantity: item.quantity
+				}))
+			}),
+		{
+			onSuccess: ({ data }) => push(data.confirmation.confirmation_url).then(() => reset())
+		}
+	)
 
 	return (
 		<section className='relative' ref={ref}>
@@ -66,7 +82,7 @@ export const Cart: FC = () => {
 				</section>
 
 				<section className='text-center'>
-					<Button variant='light' size='s' className='btn-link mb-2 mt-5'>
+					<Button onClick={() => mutate()} variant='light' size='s' className='btn-link mb-2 mt-5'>
 						Place order
 					</Button>
 				</section>
