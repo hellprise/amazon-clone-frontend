@@ -7,7 +7,7 @@ import { errorCatch, getContentType } from './api.helper'
 
 const axiosOptions: CreateAxiosDefaults = {
 	baseURL: process.env.NEXT_PUBLIC_API_URL,
-	headers: getContentType(),
+	headers: getContentType()
 }
 
 export const axiosClassic = axios.create(axiosOptions)

@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap');
 
 body {
-	@apply bg-bg text-base text-black;
+	@apply overflow-x-hidden bg-bg text-base text-black;
 
 	font-family: 'Golos Text', sans-serif;
 }
@@ -17,12 +17,38 @@ body {
 	opacity: 0.2 !important;
 }
 
-.menu__open {
-	opacity: 1;
-	transform: scale(1);
-}
+.btn {
+	@apply border-2 font-semibold transition-all duration-300;
 
-.menu__close {
-	opacity: 0;
-	transform: scale(0.8);
+	&:not(&:disabled) {
+		@apply hover:shadow-lg;
+	}
+
+	&.btn-light {
+		@apply border-white bg-white text-primary hover:border-bg hover:bg-primary hover:text-white;
+	}
+
+	&.btn-orange {
+		@apply border-primary bg-primary text-secondary hover:border-secondary hover:bg-secondary hover:text-primary;
+	}
+
+	&.btn-google {
+		@apply border-bg bg-white text-secondary hover:bg-bg;
+	}
+
+	&.btn-sm {
+		@apply rounded-xl py-2 text-sm md:px-3;
+	}
+	&.btn-md {
+		@apply rounded-3xl py-2 md:px-5;
+	}
+	&.btn-lg {
+		@apply rounded-2xl md:px-6 md:py-3;
+	}
+	&.btn-xl {
+		@apply rounded-xl py-2 md:px-12;
+	}
+	&.btn-full {
+		@apply w-full rounded-lg py-3 md:text-lg;
+	}
 }

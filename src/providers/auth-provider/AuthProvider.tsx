@@ -1,22 +1,25 @@
-import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
+'use client'
+
+import { usePathname, useRouter } from 'next/navigation'
 import { FC, PropsWithChildren, useEffect } from 'react'
+
+import { ADMIN_PANEL_URL } from '@/config/url.config'
 
 import { getAccessToken, getRefreshToken } from '@/services/auth/auth.helper'
 
 import { useActions } from '@/hooks/useActions'
 import { useAuth } from '@/hooks/useAuth'
 
-import { TypeComponentAuthFields } from './auth-page.types'
+import { protectedRoutes } from './protected-routes.data'
+import NotFound from '@/app/not-found'
 
-const DynamicCheckRole = dynamic(() => import('./CheckRole'), {
-	ssr: false
-})
+const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
+	const pathname = usePathname()
 
-const AuthProvider: FC<PropsWithChildren<TypeComponentAuthFields>> = ({ Component: { isOnlyUser }, children }) => {
-	const { pathname } = useRouter()
+	const router = useRouter()
 
 	const { user } = useAuth()
+
 	const { checkAuth, logout } = useActions()
 
 	useEffect(() => {
@@ -26,14 +29,25 @@ const AuthProvider: FC<PropsWithChildren<TypeComponentAuthFields>> = ({ Componen
 	}, [])
 
 	useEffect(() => {
-		// const refreshToken = Cookies.get('refreshToken')
 		const refreshToken = getRefreshToken()
 
 		if (!refreshToken && user) logout()
 	}, [pathname])
 
-	// якщо сторінка потребує авторизації - обертаємо її в компонент CheckRole, а якщо ні - рендеримо без цієї обгортки
-	return isOnlyUser ? <DynamicCheckRole Component={{ isOnlyUser }} children={children} /> : <>{children}</>
+	const isProtectedRoute = protectedRoutes.some(route => pathname?.startsWith(route))
+
+	const isAdminRoute = pathname?.startsWith(ADMIN_PANEL_URL)
+
+	if (!isProtectedRoute && !isAdminRoute) return <>{children}</>
+
+	if (user?.isAdmin) return <>{children}</>
+	if (user && isProtectedRoute) return <>{children}</>
+
+	if (user && isAdminRoute) return <NotFound />
+
+	pathname !== '/auth' && router.replace('/auth')
+
+	return null
 }
 
 export default AuthProvider

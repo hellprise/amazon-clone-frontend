@@ -13,8 +13,12 @@ export type typeProductData = {
 }
 
 type SortData = {
-	sort?: EnumProductSort
+	sort?: EnumProductSort | string
 	searchTerm?: string
+	ratings: string
+	minPrice?: string
+	maxPrice?: string
+	categoryId?: string
 }
 
 export type TypeProductDataFilters = SortData & IPagination

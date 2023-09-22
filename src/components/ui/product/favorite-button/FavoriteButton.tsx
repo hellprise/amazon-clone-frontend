@@ -7,7 +7,7 @@ import { UserService } from '@/services/user.service'
 
 import { useProfile } from '@/hooks/useProfile'
 
-const FavoriteButton: FC<{ productId: number }> = ({ productId }) => {
+export const FavoriteButton: FC<{ productId: number }> = ({ productId }) => {
 	const { profile } = useProfile()
 
 	const queryClient = useQueryClient()
@@ -35,5 +35,3 @@ const FavoriteButton: FC<{ productId: number }> = ({ productId }) => {
 		</button>
 	)
 }
-
-export default FavoriteButton

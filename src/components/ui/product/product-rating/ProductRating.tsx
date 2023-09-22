@@ -3,8 +3,13 @@ import { Rating } from 'react-simple-star-rating'
 
 import { IProduct } from '@/types/product.interface'
 
-export const ProductRating: FC<{ product: IProduct }> = ({ product }) => {
-	const [rating, setRating] = useState<number>(
+interface IProductRatingProps {
+	product: IProduct
+	isText?: boolean
+}
+
+export const ProductRating: FC<IProductRatingProps> = ({ product, isText = false }) => {
+	const [rating] = useState<number>(
 		Math.round(product.reviews.reduce((acc, review) => acc + review.rating, 0) / product.reviews.length) || 0
 	)
 
@@ -31,7 +36,7 @@ export const ProductRating: FC<{ product: IProduct }> = ({ product }) => {
 
 			<p className='mr-1 font-medium leading-none text-primary'>{rating}</p>
 
-			<span className='leading-none'>({product.reviews.length} reviews)</span>
+			{isText && <span className='leading-none'>({product.reviews.length} reviews)</span>}
 		</section>
 	)
 }

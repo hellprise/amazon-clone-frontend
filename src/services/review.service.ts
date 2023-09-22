@@ -18,7 +18,7 @@ export const ReviewService = {
 	},
 
 	async getAverageByProduct(productId: string | number) {
-		return axiosClassic<{rating: number}>({
+		return axiosClassic<{ rating: number }>({
 			url: `${REVIEWS}/average-by-product/${productId}`,
 			method: 'GET'
 		})

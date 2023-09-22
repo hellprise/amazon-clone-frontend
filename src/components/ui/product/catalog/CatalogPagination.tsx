@@ -1,3 +1,5 @@
+'use client'
+
 import { useQuery } from '@tanstack/react-query'
 import { FC, useState } from 'react'
 
@@ -30,7 +32,8 @@ export const CatalogPagination: FC<ICatalogPaginationProps> = ({ data, title }) 
 			ProductService.getAll({
 				page,
 				perPage: PER_PAGE,
-				sort: sortType
+				sort: sortType,
+				ratings: ''
 			}),
 		{
 			initialData: data,

@@ -1,3 +1,5 @@
+'use client'
+
 import { FC } from 'react'
 
 import { Heading } from '@/ui/heading/Heading'
@@ -9,7 +11,7 @@ import { ProductCard } from '../product-card/ProductCard'
 
 interface ICatalogProps extends TypeProducts {
 	isLoading?: boolean
-	title: string
+	title?: string
 }
 
 export const Catalog: FC<ICatalogProps> = ({ products, isLoading, title }) => {
