@@ -7,7 +7,7 @@ import { Loader } from '@/ui/loader/Loader'
 
 import { TypeProducts } from '@/types/product.interface'
 
-import { ProductCard } from '../product-card/ProductCard'
+import { ProductCard } from './product-card/ProductCard'
 
 interface ICatalogProps extends TypeProducts {
 	isLoading?: boolean

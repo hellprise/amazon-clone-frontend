@@ -10,8 +10,9 @@ import { getAccessToken, getRefreshToken } from '@/services/auth/auth.helper'
 import { useActions } from '@/hooks/useActions'
 import { useAuth } from '@/hooks/useAuth'
 
-import { protectedRoutes } from './protected-routes.data'
+import { Auth } from '@/app/(customer)/auth/Auth'
 import NotFound from '@/app/not-found'
+import { protectedRoutes } from './protected-routes.data'
 
 const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	const pathname = usePathname()
@@ -45,7 +46,7 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
 
 	if (user && isAdminRoute) return <NotFound />
 
-	pathname !== '/auth' && router.replace('/auth')
+	if (pathname !== '/auth') return <Auth />
 
 	return null
 }

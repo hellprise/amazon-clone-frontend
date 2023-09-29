@@ -4,8 +4,9 @@ import { IAuthResponse, IEmailPassword } from '@/store/user/user.interface'
 
 import { axiosClassic } from '@/api/api.interceptor'
 
-import { saveToStorage } from './auth.helper'
 import { REFRESH_TOKEN } from '@/constants/token.constants'
+
+import { saveToStorage } from './auth.helper'
 
 export const AuthService = {
 	async main(type: 'login' | 'register', data: IEmailPassword) {

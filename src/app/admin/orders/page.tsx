@@ -1,13 +1,14 @@
 import { Metadata } from 'next'
 
-import { Auth } from './Auth'
 import { NO_INDEX_PAGE } from '@/constants/seo.constants'
 
+import { Orders } from './Orders'
+
 export const metadata: Metadata = {
-	title: 'Auth',
+	title: 'Admin products',
 	...NO_INDEX_PAGE
 }
 
-export default function AuthPage() {
-	return <Auth />
+export default function AdminProductsPage() {
+	return <Orders />
 }

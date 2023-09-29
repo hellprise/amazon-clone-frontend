@@ -1,12 +1,12 @@
 import { getAdminUrl } from '@/config/url.config'
 
-import { IMenuItem } from './menu.interface'
+import { IMenuItem } from '../app/layout/sidebar/menu.interface'
 
 export const ADMIN_MENU: IMenuItem[] = [
 	{
 		id: 1,
 		label: 'Dashboard',
-		href: getAdminUrl('/')
+		href: getAdminUrl()
 	},
 	{
 		id: 2,

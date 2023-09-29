@@ -8,9 +8,9 @@ import { IProduct } from '@/types/product.interface'
 
 import { convertPrice } from '@/utils/convert-price'
 
-import { AddToCartButton } from '../add-cart-button/AddToCartButton'
-import { FavoriteButton } from '../favorite-button/FavoriteButton'
-import { ProductRating } from '../product-rating/ProductRating'
+import { AddToCartButton } from '../../add-cart-button/AddToCartButton'
+import { FavoriteButton } from '../../favorite-button/FavoriteButton'
+import { ProductRating } from '../../product-rating/ProductRating'
 
 export const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
 	return (

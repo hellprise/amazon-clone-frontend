@@ -1,23 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+import { ICarouselInitialState } from './carousel.types'
 
 const initialState: ICarouselInitialState = {
-	items: []
+	selectedItemIndex: 0
 }
 
 export const carouselSlice = createSlice({
 	name: 'carousel',
 	initialState,
 	reducers: {
-		// addToCart: (state, action: PayloadAction<IAddToCartPayload>) => {
-		// 	const isExistsSize = state.items.some(
-		// 		item => item.size === action.payload.size
-		// 	)
-		// 	if (isExistsSize) {
-		// 		state.items.push({
-		// 			...action.payload,
-		// 			id: state.items.length + 1
-		// 		})
-		// 	}
-		// },
+		nextSlide: (state, action: PayloadAction<{ carouselLength: number }>) => {
+			if (state.selectedItemIndex !== action.payload.carouselLength - 1) state.selectedItemIndex += 1
+			else state.selectedItemIndex = 0
+		},
+		prevSlide: (state, action: PayloadAction<{ carouselLength: number }>) => {
+			if (state.selectedItemIndex > 0) state.selectedItemIndex -= 1
+			else state.selectedItemIndex = action.payload.carouselLength - 1
+		},
+		selectIndex: (state, action: PayloadAction<number>) => {
+			state.selectedItemIndex = action.payload
+		}
 	}
 })

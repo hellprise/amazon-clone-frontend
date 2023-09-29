@@ -23,6 +23,10 @@ type SortData = {
 
 export type TypeProductDataFilters = SortData & IPagination
 
+export type TypeParamsFilters = {
+	searchParams: TypeProductDataFilters
+}
+
 export enum EnumProductSort {
 	HIGH_PRICE = 'hight-price',
 	LOW_PRICE = 'low-price',

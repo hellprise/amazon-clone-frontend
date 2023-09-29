@@ -1,0 +1,5 @@
+.range {
+	> input {
+		@apply w-full max-w-[128px] rounded-lg border border-gray-300 px-4 py-2 outline-none transition-all placeholder:text-gray-300 focus:border-primary;
+	}
+}

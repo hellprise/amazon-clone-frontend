@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: IPageSlugParam): Promise<Meta
 		title: category.name,
 		description: `Random description about ${category.name}`,
 		openGraph: {
-			images: products[0].images,
+			images: products[0]?.images || [],
 			type: 'website',
 			description: `Random description about ${category.name}`
 		}
@@ -43,11 +43,6 @@ export async function getData(params: TypeParamSlug) {
 	const { data: category } = await CategoryService.getBySlug(params.slug as string)
 
 	return { products, category }
-}
-
-interface ICategoryPageProps {
-	products: IProduct[]
-	category: ICategory
 }
 
 export default async function CategoryPage({ params }: IPageSlugParam) {

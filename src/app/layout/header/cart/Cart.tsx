@@ -20,28 +20,6 @@ export const Cart: FC = () => {
 
 	const handleIsShow = () => setIsShow(!isShow)
 
-	// const { reset } = useActions()
-
-	// const { push } = useRouter()
-
-	// const { mutate } = useMutation(
-	// 	['create order and payment'],
-	// 	() =>
-	// 		OrderService.place({
-	// 			items: items.map(item => ({
-	// 				price: item.price,
-	// 				productId: item.product.id,
-	// 				quantity: item.quantity
-	// 			}))
-	// 		}),
-	// 	{
-	// 		onSuccess: ({ data }) => {
-	// 			reset()
-	// 			push(data.confirmation.confirmation_url)
-	// 		}
-	// 	}
-	// )
-
 	return (
 		<section className='relative' ref={ref}>
 			<button onClick={handleIsShow} className='relative rounded-lg bg-primary p-2'>
@@ -75,8 +53,8 @@ export const Cart: FC = () => {
 					{!!items.length && (
 						<section className='mb-5 mt-7 text-center'>
 							<Link href='/checkout'>
-								<Button variant='light' size='s' className='btn'>
-									Place order
+								<Button variant='light' size='s' className='btn' onClick={() => setIsShow(false)}>
+									Go to checkout
 								</Button>
 							</Link>
 						</section>

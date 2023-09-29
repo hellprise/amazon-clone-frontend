@@ -15,7 +15,7 @@ import { convertToMenuItems } from '@/utils/convert-to-menu-items'
 
 import { Loader } from '../../../components/ui/loader/Loader'
 
-import { ADMIN_MENU } from './admin-menu.data'
+import { ADMIN_MENU } from '@/data/admin-menu.data'
 
 const Sidebar = () => {
 	const { data, isLoading } = useCategories()
@@ -32,17 +32,17 @@ const Sidebar = () => {
 					<Loader />
 				) : data ? (
 					<ul className='relative pl-5'>
-						{(isAdminPanel ? ADMIN_MENU : convertToMenuItems(data)).map(item => (
-							<li key={item.id}>
+						{(isAdminPanel ? ADMIN_MENU : convertToMenuItems(data)).map((item, i) => (
+							<li key={item.id + '_' + i}>
 								<Link
 									className={clsx(
 										'group flex items-center gap-3 rounded-lg bg-transparent px-4 py-2 transition-all duration-300 hover:bg-black',
 										{
-											'text-primary': pathname === `/category/${item.href}`,
-											'text-white': pathname !== `/category/${item.href}`
+											'text-primary': pathname === item.href,
+											'text-white': pathname !== item.href
 										}
 									)}
-									href={`/category/${item.href}`}
+									href={`${item.href}`}
 								>
 									<div className='invisible absolute -left-[10px] h-0.5 w-6 rotate-90 rounded-tl-lg rounded-tr-lg bg-primary opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100' />
 

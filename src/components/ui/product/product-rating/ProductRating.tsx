@@ -13,14 +13,6 @@ export const ProductRating: FC<IProductRatingProps> = ({ product, isText = false
 		Math.round(product.reviews.reduce((acc, review) => acc + review.rating, 0) / product.reviews.length) || 0
 	)
 
-	// const { data: rating } = useQuery(
-	// 	['get product rating', product.id],
-	// 	() => ReviewService.getAverageByProduct(product.id),
-	// 	{
-	// 		select: ({ data }) => data.rating
-	// 	}
-	// )
-
 	return (
 		<section className='mt-2 flex items-center gap-1'>
 			{!!product.reviews.length && (
